@@ -106,22 +106,15 @@ public class ControllerNew {
         }
     }
 
-    public boolean isNotNumeric(String str) {
-        try {
-            Double.parseDouble(str);
-            return false;
-        } catch(NumberFormatException e){
-            return true;
-        }
-    }
+
 
     public void checktexts(){
-        if (isNotNumeric(ContainerTxt.getText())){
+        if (db.isNotNumeric(ContainerTxt.getText())){
             Logger.warn("Cointainer must be a number!");
             ContainerTxt.clear();
             ContainerTxt.setPromptText("Enter a number!");
         }else {
-            if (isNotNumeric(AmountTxt.getText())){
+            if (db.isNotNumeric(AmountTxt.getText())){
                 Logger.warn("Amount must be a number!");
                 AmountTxt.setPromptText("Enter a number!");
             }else{
@@ -159,16 +152,10 @@ public class ControllerNew {
             }
 
 
-            public boolean checkbottling(String Choice,String Amount){
-                    if (isNotNumeric(Amount)) return false;
-                    if (Choice==null) return false;
-                    return true;
 
-
-            }
 
     public void handleBottling() {
-        if (checkbottling(ChoiceWine.getValue(),BAtxt.getText())) {
+        if (db.checkbottling(ChoiceWine.getValue(),BAtxt.getText())) {
             Logger.info("Bottling button pressed!");
             int Nothing = -1;
 

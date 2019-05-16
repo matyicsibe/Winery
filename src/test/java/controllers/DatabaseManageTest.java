@@ -11,13 +11,7 @@ import static org.junit.Assert.*;
 public class DatabaseManageTest {
 
     private DatabaseManage db = new DatabaseManage();
-    @Before
-    public void setUp() throws Exception {
-    }
 
-    @After
-    public void tearDown() throws Exception {
-    }
 
     @Test
     public void handleNewRequest() {
@@ -31,5 +25,20 @@ public class DatabaseManageTest {
 
                 expected.setId(actual.getId());
         Assert.assertEquals(expected,actual);
+    }
+
+    @Test
+    public void isNotNumeric() {
+        boolean actual = db.isNotNumeric("string");
+        boolean expected = true;
+        Assert.assertEquals(expected,actual);
+    }
+
+    @Test
+    public void checkbottling() {
+        boolean actual = db.checkbottling(null,"1500" );
+        boolean expected = false;
+        Assert.assertEquals(expected,actual);
+
     }
 }

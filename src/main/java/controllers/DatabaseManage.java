@@ -47,6 +47,23 @@ class DatabaseManage {
         return containers;
     }
 
+    public boolean isNotNumeric(String str) {
+        try {
+            Double.parseDouble(str);
+            return false;
+        } catch(NumberFormatException e){
+            return true;
+        }
+    }
+
+    public boolean checkbottling(String Choice,String Amount){
+        if (isNotNumeric(Amount)) return false;
+        if (Choice==null) return false;
+        return true;
+
+
+    }
+
 
     private Injector injector = Guice.createInjector(new PersistenceModule("jpa-persistence-unit-1"));
 
