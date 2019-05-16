@@ -35,7 +35,12 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <license.licenseName>gpl_v3</license.licenseName>
     </properties>
-
+    <scm>
+        <connection>scm:git:https:https://github.com/matyicsibe/Winery.git</connection>
+        <developerConnection>scm:git:https://github.com/matyicsibe/Winery.git</developerConnection>
+        <url>https://github.com/matyicsibe/Winery.git</url>
+        <tag>master</tag>
+    </scm>
     <dependencies>
 
 
