@@ -27,10 +27,24 @@ import com.google.inject.Injector;
 import guice.PersistenceModule;
 import models.BottledDao;
 import models.ContainersDao;
+import models.Containers;
 //CHECKSTYLE:OFF
 class DatabaseManage {
 
     DatabaseManage() {
+    }
+
+    public Containers handleNewRequest(String AmString,String ContString,String Type,String WineId){
+        int contInt = Integer.parseInt(ContString);
+        int AmInt = Integer.parseInt(AmString);
+
+        Containers containers = Containers.builder()
+                .Container(contInt)
+                .Amount(AmInt)
+                .Type(Type)
+                .WineId(WineId)
+                .build();
+        return containers;
     }
 
 

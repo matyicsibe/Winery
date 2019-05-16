@@ -50,6 +50,7 @@ public class ControllerNew {
     public ControllerNew() {
     }
 
+
     public ImageView NewBackground;
     public TextField BAtxt;
 
@@ -142,15 +143,8 @@ public class ControllerNew {
     private void handleNew() {
 
             Logger.info("New Entry button pressed!");
-            int contInt = Integer.parseInt(ContainerTxt.getText());
-            int AmInt = Integer.parseInt(AmountTxt.getText());
 
-            Containers containers = Containers.builder()
-                    .Container(contInt)
-                    .Amount(AmInt)
-                    .Type(TypeTxt.getText())
-                    .WineId(WineIdTxt.getText())
-                    .build();
+            Containers containers = db.handleNewRequest(AmountTxt.getText(),ContainerTxt.getText(),TypeTxt.getText(),WineIdTxt.getText());
 
             containersDao.persist(containers);
             ContainerTxt.clear();
@@ -165,59 +159,73 @@ public class ControllerNew {
             }
 
 
-    public void handleBottling() {
-        Logger.info("Bottling button pressed!");
-        int Nothing = -1;
+            public boolean checkbottling(String Choice,String Amount){
+                    if (isNotNumeric(Amount)) return false;
+                    if (Choice==null) return false;
+                    return true;
 
-        for (Containers containers : ContainerList) {
-            if (containers.getWineId().equals(ChoiceWine.getValue())) {
-                Nothing = containers.getId();
-                break;
+
             }
-        }
-        Optional resultbottl = bottledDao.find(ChoiceWine.getValue());
-        if (resultbottl.isPresent()) {
-            int a = Integer.parseInt(BAtxt.getText());
-            double b = a / 0.75;
-            Bottled bottle = (Bottled) resultbottl.get();
-            Optional resultcont = containersDao.find(Nothing);
-            if (resultcont.isPresent()) {
-                Containers cont = (Containers) resultcont.get();
-                bottle.setAmount(bottle.getAmount()+a);
-                bottle.setOnStock((int) (bottle.getOnStock()+b));
-                cont.setAmount(cont.getAmount() - a);
-                bottledDao.update(bottle);
-                if (cont.getAmount().equals(0)){
-                    containersDao.remove(cont);
-                }else {
-                    containersDao.update(cont);
+
+    public void handleBottling() {
+        if (checkbottling(ChoiceWine.getValue(),BAtxt.getText())) {
+            Logger.info("Bottling button pressed!");
+            int Nothing = -1;
+
+            for (Containers containers : ContainerList) {
+                if (containers.getWineId().equals(ChoiceWine.getValue())) {
+                    Nothing = containers.getId();
+                    break;
                 }
             }
+            Optional resultbottl = bottledDao.find(ChoiceWine.getValue());
+            if (resultbottl.isPresent()) {
+                int a = Integer.parseInt(BAtxt.getText());
+                double b = a / 0.75;
+                Bottled bottle = (Bottled) resultbottl.get();
+                Optional resultcont = containersDao.find(Nothing);
+                if (resultcont.isPresent()) {
+                    Containers cont = (Containers) resultcont.get();
+                    bottle.setAmount(bottle.getAmount() + a);
+                    bottle.setOnStock((int) (bottle.getOnStock() + b));
+                    cont.setAmount(cont.getAmount() - a);
+                    bottledDao.update(bottle);
+                    if (cont.getAmount().equals(0)) {
+                        containersDao.remove(cont);
+                    } else {
+                        containersDao.update(cont);
+                    }
+                }
 
 
-
-
-        } else {
-            int a = Integer.parseInt(BAtxt.getText());
-            double b = a / 0.75;
-            Optional resultcont = containersDao.find(Nothing);
-            if (resultcont.isPresent()) {
-                Containers cont = (Containers) resultcont.get();
-                cont.setAmount(cont.getAmount() - a);
-                Bottled bottle = Bottled.builder()
-                        .Amount(a)
-                        .OnStock((int) b)
-                        .Sold(0)
-                        .WineId(cont.getWineId())
-                        .Recipient("Not sold yet")
-                        .build();
-                containersDao.update(cont);
-                bottledDao.persist(bottle);
+            } else {
+                int a = Integer.parseInt(BAtxt.getText());
+                double b = a / 0.75;
+                Optional resultcont = containersDao.find(Nothing);
+                if (resultcont.isPresent()) {
+                    Containers cont = (Containers) resultcont.get();
+                    cont.setAmount(cont.getAmount() - a);
+                    Bottled bottle = Bottled.builder()
+                            .Amount(a)
+                            .OnStock((int) b)
+                            .Sold(0)
+                            .WineId(cont.getWineId())
+                            .Recipient("Not sold yet")
+                            .build();
+                    containersDao.update(cont);
+                    bottledDao.persist(bottle);
+                }
             }
+            BAtxt.clear();
+            ChoiceWine.setValue(null);
+        }else{
+            BAtxt.clear();
+            ChoiceWine.setValue(null);
+            BAtxt.setPromptText("Enter a Number!");
+            ChoiceWine.setValue("Choose a Wine!");
+
         }
 
-        BAtxt.clear();
-        ChoiceWine.setValue(null);
     }
 
 
