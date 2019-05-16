@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ControllerCurrent.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Winery</a> &gt; <a href="index.source.html" class="el_package">controllers</a> &gt; <span class="el_source">ControllerCurrent.java</span></div><h1>ControllerCurrent.java</h1><pre class="source lang-java linenums">package controllers;
+/*-
+ * #%L
+ * Winery
+ * %%
+ * Copyright (C) 2019 Faculty of Informatics, University of Debrecen
+ * %%
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public
+ * License along with this program.  If not, see
+ * &lt;http://www.gnu.org/licenses/gpl-3.0.html&gt;.
+ * #L%
+ */
+
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
+import models.Bottled;
+import models.BottledDao;
+import models.Containers;
+import models.ContainersDao;
+import org.pmw.tinylog.Logger;
+
+import java.io.IOException;
+
+import static java.lang.System.exit;
+
+
+/**
+ * A controller for the CurrentStatus.fxml file.
+ */
+<span class="nc" id="L52">public class ControllerCurrent {</span>
+    //CHECKSTYLE:OFF
+
+    public ImageView StatusBackground;
+<span class="nc" id="L56">    DatabaseManage db=new DatabaseManage();</span>
+<span class="nc" id="L57">    private BottledDao bottledDao = db.getBottledDao();</span>
+<span class="nc" id="L58">    private ContainersDao containersDao = db.getContainersDao();</span>
+
+    private ObservableList BottledList;
+    private ObservableList ContainerList;
+    private void Initialize() {
+
+<span class="nc" id="L64">        BottledList = FXCollections.observableArrayList(bottledDao.findAll());</span>
+<span class="nc" id="L65">        ContainerList = FXCollections.observableArrayList(containersDao.findAll());</span>
+<span class="nc" id="L66">        Logger.info(&quot;ObservableArraylists initialized.&quot;);</span>
+
+<span class="nc" id="L68">    }</span>
+
+
+
+    public Button Back;
+<span class="nc" id="L73">    @FXML</span>
+    TableView&lt;Containers&gt; ContainerTable = new TableView&lt;&gt;();
+<span class="nc" id="L75">    @FXML</span>
+    TableView&lt;Bottled&gt; BottledTable = new TableView&lt;&gt;();
+
+
+<span class="nc" id="L79">    @FXML</span>
+    TableColumn&lt;Containers,Integer&gt; Identity = new TableColumn&lt;&gt;(&quot;Id&quot;);
+<span class="nc" id="L81">    @FXML</span>
+    TableColumn&lt;Containers,Integer&gt; Container= new TableColumn&lt;&gt;(&quot;Container&quot;);
+<span class="nc" id="L83">    @FXML</span>
+    TableColumn&lt;Containers, String&gt; Type = new TableColumn&lt;&gt;(&quot;Type&quot;);
+<span class="nc" id="L85">    @FXML</span>
+    TableColumn&lt;Containers,Integer&gt; Amount = new TableColumn&lt;&gt;(&quot;Amount&quot;);
+<span class="nc" id="L87">    @FXML</span>
+    TableColumn&lt;Containers,String&gt; WineID = new TableColumn&lt;&gt;(&quot;WineId&quot;);
+<span class="nc" id="L89">    @FXML</span>
+    TableColumn&lt;Bottled,String&gt; WineIdBottl = new TableColumn&lt;&gt;(&quot;WineId&quot;);
+<span class="nc" id="L91">    @FXML</span>
+    TableColumn&lt;Bottled,Integer&gt; AmountBottle= new TableColumn&lt;&gt;(&quot;Amount&quot;);
+<span class="nc" id="L93">    @FXML</span>
+    TableColumn&lt;Bottled,Integer&gt; OnStock= new TableColumn&lt;&gt;(&quot;OnStock&quot;);
+<span class="nc" id="L95">    @FXML</span>
+    TableColumn&lt;Containers,Integer&gt; Sold = new TableColumn&lt;&gt;(&quot;Sold&quot;);
+<span class="nc" id="L97">    @FXML</span>
+    TableColumn&lt;Containers,String&gt;  Recipients = new TableColumn&lt;&gt;(&quot;Recipients&quot;);
+
+
+    /**
+     * Displays the 2 tables.
+     */
+    @FXML
+    public void Show() {
+
+<span class="nc" id="L107">        Logger.info(&quot;Showing Tables...&quot;);</span>
+<span class="nc" id="L108">        Initialize();</span>
+
+<span class="nc" id="L110">        Container.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;Container&quot;));</span>
+<span class="nc" id="L111">        Identity.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;Id&quot;));</span>
+<span class="nc" id="L112">        Type.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;Type&quot;));</span>
+<span class="nc" id="L113">        Amount.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;Amount&quot;));</span>
+<span class="nc" id="L114">        WineID.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;WineId&quot;));</span>
+<span class="nc" id="L115">        WineIdBottl.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;WineId&quot;));</span>
+<span class="nc" id="L116">        AmountBottle.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;Amount&quot;));</span>
+<span class="nc" id="L117">        OnStock.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;OnStock&quot;));</span>
+<span class="nc" id="L118">        Sold.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;Sold&quot;));</span>
+<span class="nc" id="L119">        Recipients.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;Recipient&quot;));</span>
+
+
+
+<span class="nc" id="L123">        ContainerTable.setItems(ContainerList);</span>
+<span class="nc" id="L124">        BottledTable.setItems(BottledList);</span>
+
+
+
+
+<span class="nc" id="L129">    }</span>
+
+    /**
+     * Handles pressing the Back button.
+     */
+    public void HandleBack() {
+        try {
+<span class="nc" id="L136">            Logger.info(&quot;Back button pressed&quot;);</span>
+<span class="nc" id="L137">            Stage stage = (Stage) Back.getScene().getWindow();</span>
+<span class="nc" id="L138">            FXMLLoader fl = new FXMLLoader(getClass()</span>
+<span class="nc" id="L139">                    .getResource(&quot;/fxml/Main.fxml&quot;));</span>
+<span class="nc" id="L140">            Parent root = fl.load();</span>
+<span class="nc" id="L141">            fl.&lt;Controller&gt;getController().setimage();</span>
+<span class="nc" id="L142">            stage.setTitle(&quot;Winery Manager&quot;);</span>
+<span class="nc" id="L143">            Scene scene = new Scene(root);</span>
+            //scene.getStylesheets().add(getClass().getResource(&quot;/styles/ExamStyle.css&quot;).toExternalForm());
+<span class="nc" id="L145">            stage.setScene(scene);</span>
+<span class="nc" id="L146">            stage.centerOnScreen();</span>
+<span class="nc" id="L147">            stage.show();</span>
+<span class="nc" id="L148">            stage.setOnCloseRequest(e -&gt; exit(0));</span>
+<span class="nc" id="L149">        } catch (IOException ex) {</span>
+<span class="nc" id="L150">            ex.printStackTrace();</span>
+<span class="nc" id="L151">        }</span>
+<span class="nc" id="L152">    }</span>
+
+    /**
+     * Handles pressing the New Entry button.
+     */
+    public void handleNew() {
+
+
+        try {
+<span class="nc" id="L161">            Logger.info(&quot;New Entry button pressed!&quot;);</span>
+<span class="nc" id="L162">            Stage stage = (Stage) Back.getScene().getWindow();</span>
+<span class="nc" id="L163">            FXMLLoader fl = new FXMLLoader(getClass()</span>
+<span class="nc" id="L164">                    .getResource(&quot;/fxml/NewEntry.fxml&quot;));</span>
+<span class="nc" id="L165">            Parent root = fl.load();</span>
+<span class="nc" id="L166">            fl.&lt;ControllerNew&gt;getController().setimage();</span>
+<span class="nc" id="L167">            stage.setTitle(&quot;New Entry&quot;);</span>
+<span class="nc" id="L168">            Scene scene = new Scene(root);</span>
+            //scene.getStylesheets().add(getClass().getResource(&quot;/styles/ExamStyle.css&quot;).toExternalForm());
+<span class="nc" id="L170">            stage.setScene(scene);</span>
+<span class="nc" id="L171">            stage.centerOnScreen();</span>
+<span class="nc" id="L172">            stage.show();</span>
+<span class="nc" id="L173">            stage.setOnCloseRequest(e -&gt; exit(0));</span>
+<span class="nc" id="L174">        } catch (IOException ex) {</span>
+<span class="nc" id="L175">            ex.printStackTrace();</span>
+<span class="nc" id="L176">        }</span>
+
+<span class="nc" id="L178">    }</span>
+//CHECKSTYLE:ON
+
+    /**
+     * Sets the background image.
+     */
+    public void setimage(){
+<span class="nc" id="L185">        StatusBackground.setImage(new Image(getClass().getClassLoader().</span>
+<span class="nc" id="L186">                getResourceAsStream(&quot;images/Grapes.jpg&quot;)));</span>
+<span class="nc" id="L187">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

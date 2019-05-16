@@ -1,37 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="6.18">
-<file name="C:\Users\Matyi\IdeaProjects\Winery\src\main\java\controllers\Controller.java">
+<file name="C:\Users\Matyi\IdeaProjects\Github\src\main\java\controllers\Controller.java">
 </file>
-<file name="C:\Users\Matyi\IdeaProjects\Winery\src\main\java\controllers\ControllerCurrent.java">
+<file name="C:\Users\Matyi\IdeaProjects\Github\src\main\java\controllers\ControllerCurrent.java">
 </file>
-<file name="C:\Users\Matyi\IdeaProjects\Winery\src\main\java\controllers\ControllerNew.java">
+<file name="C:\Users\Matyi\IdeaProjects\Github\src\main\java\controllers\ControllerNew.java">
 </file>
-<file name="C:\Users\Matyi\IdeaProjects\Winery\src\main\java\controllers\DatabaseManage.java">
+<file name="C:\Users\Matyi\IdeaProjects\Github\src\main\java\controllers\DatabaseManage.java">
 </file>
-<file name="C:\Users\Matyi\IdeaProjects\Winery\src\main\java\controllers\package-info.java">
+<file name="C:\Users\Matyi\IdeaProjects\Github\src\main\java\controllers\package-info.java">
+<error line="27" severity="error" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck"/>
 </file>
-<file name="C:\Users\Matyi\IdeaProjects\Winery\src\main\java\guice\JpaInitializer.java">
+<file name="C:\Users\Matyi\IdeaProjects\Github\src\main\java\guice\JpaInitializer.java">
 </file>
-<file name="C:\Users\Matyi\IdeaProjects\Winery\src\main\java\guice\package-info.java">
+<file name="C:\Users\Matyi\IdeaProjects\Github\src\main\java\guice\PersistenceModule.java">
 </file>
-<file name="C:\Users\Matyi\IdeaProjects\Winery\src\main\java\guice\PersistenceModule.java">
+<file name="C:\Users\Matyi\IdeaProjects\Github\src\main\java\jpa\GenericJpaDao.java">
 </file>
-<file name="C:\Users\Matyi\IdeaProjects\Winery\src\main\java\jpa\GenericJpaDao.java">
+<file name="C:\Users\Matyi\IdeaProjects\Github\src\main\java\jpa\package-info.java">
+<error line="26" severity="error" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck"/>
 </file>
-<file name="C:\Users\Matyi\IdeaProjects\Winery\src\main\java\jpa\package-info.java">
-<error line="1" severity="error" message="First sentence should end with a period." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck"/>
+<file name="C:\Users\Matyi\IdeaProjects\Github\src\main\java\jpa\YearConverter.java">
 </file>
-<file name="C:\Users\Matyi\IdeaProjects\Winery\src\main\java\jpa\YearConverter.java">
+<file name="C:\Users\Matyi\IdeaProjects\Github\src\main\java\models\Bottled.java">
 </file>
-<file name="C:\Users\Matyi\IdeaProjects\Winery\src\main\java\models\Bottled.java">
+<file name="C:\Users\Matyi\IdeaProjects\Github\src\main\java\models\BottledDao.java">
 </file>
-<file name="C:\Users\Matyi\IdeaProjects\Winery\src\main\java\models\BottledDao.java">
+<file name="C:\Users\Matyi\IdeaProjects\Github\src\main\java\models\Containers.java">
 </file>
-<file name="C:\Users\Matyi\IdeaProjects\Winery\src\main\java\models\Containers.java">
+<file name="C:\Users\Matyi\IdeaProjects\Github\src\main\java\models\ContainersDao.java">
 </file>
-<file name="C:\Users\Matyi\IdeaProjects\Winery\src\main\java\models\ContainersDao.java">
-</file>
-<file name="C:\Users\Matyi\IdeaProjects\Winery\src\main\java\models\package-info.java">
-<error line="1" severity="error" message="First sentence should end with a period." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck"/>
+<file name="C:\Users\Matyi\IdeaProjects\Github\src\main\java\models\package-info.java">
+<error line="26" severity="error" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck"/>
 </file>
 </checkstyle>

@@ -24,7 +24,11 @@ public class ControllerNewTest {
 
     @Test
     public void handleBack() {
+
+
     }
+
+
 
     @Test
     public void handleNew() {
@@ -40,5 +44,9 @@ public class ControllerNewTest {
 
     @Test
     public void setimage() {
+    }
+
+    @Test
+    public void isNotNumeric() {
     }
 }

@@ -1,0 +1,16 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+Winery,default,MainApp,34,0,0,0,10,0,3,0,3,0
+Winery,models,BottledDao,4,0,0,0,2,0,1,0,1,0
+Winery,models,Containers,277,0,46,0,9,0,40,0,17,0
+Winery,models,Bottled.BottledBuilder,74,0,0,0,1,0,8,0,8,0
+Winery,models,Bottled,277,0,46,0,9,0,40,0,17,0
+Winery,models,Containers.ContainersBuilder,74,0,0,0,1,0,8,0,8,0
+Winery,models,ContainersDao,4,0,0,0,2,0,1,0,1,0
+Winery,controllers,Controller,123,0,0,0,38,0,6,0,6,0
+Winery,controllers,ControllerNew,528,0,30,0,129,0,25,0,10,0
+Winery,controllers,DatabaseManage,35,0,0,0,7,0,3,0,3,0
+Winery,controllers,ControllerCurrent,300,0,0,0,70,0,8,0,8,0
+Winery,jpa,GenericJpaDao,56,0,0,0,15,0,8,0,8,0
+Winery,jpa,YearConverter,11,0,0,0,3,0,3,0,3,0
+Winery,guice,JpaInitializer,5,0,0,0,3,0,1,0,1,0
+Winery,guice,PersistenceModule,18,0,0,0,6,0,2,0,2,0

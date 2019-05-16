@@ -105,7 +105,7 @@ public class ControllerNew {
         }
     }
 
-    private static boolean isNotNumeric(String str) {
+    public boolean isNotNumeric(String str) {
         try {
             Double.parseDouble(str);
             return false;

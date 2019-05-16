@@ -1,5 +1,5 @@
 /**
- * Contans the generic JPA models.
+ * Contains the generic JPA models.
  */
 
 /*-
